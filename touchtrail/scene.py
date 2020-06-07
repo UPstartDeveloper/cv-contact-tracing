@@ -8,6 +8,7 @@ a place as well, which is managed by the Place class.
     scene = Scene()
     scene.describe()
 """
+__all__ = []
 
 class Object():
     """A generic computer vision object.
@@ -62,7 +63,7 @@ class Object():
 
         return (right < other.left or self.left > other_right or
                 bottom < other.top or self.top > other_bottom)
-        
+
 class Person(Object):
     """Maintains properties for a person object."""
 
