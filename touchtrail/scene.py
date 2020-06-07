@@ -15,19 +15,19 @@ class BoundingBox():
     """Store the properties for a computer vision bounding box.
 
     Attributes:
-        X (float):  Width of the bounding box as a ratio of the overall image
-        width.
-        Y (float): Height of the bounding box as a ratio of the overall image
-        height.
+        width (float):  Width of the bounding box as a ratio of the overall
+        image width.
+        height (float): Height of the bounding box as a ratio of the overall
+        image height.
         top (float): Top coordinate of the bounding box as a ratio of overall
         image height.
         left (float): Left coordinate of the bounding box as a ratio of overall
         image width.
     """
-    X: float
-    Y: float
-    top: float
+    width: float
+    height: float
     left: float
+    top: float
 
 class Object():
     """A generic computer vision object."""
@@ -41,7 +41,11 @@ class Object():
 
 class Person(Object):
     """Maintains properties for a person object."""
-    pass
+
+    def __init__(self, bounding_box):
+        super().__init__(bounding_box)
+
+
 
 
 class Place():
