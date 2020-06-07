@@ -8,11 +8,9 @@ a place as well, which is managed by the Place class.
     scene = Scene()
     scene.describe()
 """
-from dataclasses import dataclass
 
-@dataclass
-class BoundingBox():
-    """Store the properties for a computer vision bounding box.
+class Object():
+    """A generic computer vision object.
 
     Attributes:
         width (float):  Width of the bounding box as a ratio of the overall
@@ -24,19 +22,23 @@ class BoundingBox():
         left (float): Left coordinate of the bounding box as a ratio of overall
         image width.
     """
-    width: float
-    height: float
-    left: float
-    top: float
 
-class Object():
-    """A generic computer vision object."""
-
-    def __init__(self, bounding_box):
-        self.bounding_box = bounding_box
+    def __init__(self, width, height, left, top):
+        self.width = width
+        self.height = height
+        self.left = left
+        self.top = top
 
     def is_touching(self, other):
-        """Calculates if two objects have come into contact."""
+        """Determines if two objects have come into contact by calculating
+        overlap between two bouding boxes.
+
+        Args:
+            other (Object): The Object to compare.
+
+        Returns:
+            True if this object overlaps with other, else False.
+        """
         raise NotImplemented
 
 class Person(Object):
@@ -44,8 +46,6 @@ class Person(Object):
 
     def __init__(self, bounding_box):
         super().__init__(bounding_box)
-
-
 
 
 class Place():
