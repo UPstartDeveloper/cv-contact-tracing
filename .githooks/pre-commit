@@ -7,6 +7,7 @@ MSG_DECOR="~~~~~~~"
 ERRMSG_PREFIX="${MSG_DECOR} Whoops! git commit failed :0 \
 ${MSG_DECOR}${NEWLINE}"
 
+COMMIT_COMMAND="!!"
 ./beautify
 
 # Exit code equals output of last command
@@ -15,6 +16,20 @@ REFORMAT_EXITCODE=$?
 if [ $REFORMAT_EXITCODE -eq 0 ]
 	# reformat succeeded
 	then
+		# https://stackoverflow.com/questions/33610682/git-list-of-staged-files
+		FILES="$(git diff --name-only --cached)"
+
+		# https://unix.stackexchange.com/questions/509714/iterate-through-multiline-string-line-by-line
+		IFS='
+		' # split on newline only
+		set -o noglob
+		for LINE in $FILES
+		do
+		  git add $LINE
+		done
+
+		# Re-run commit since a reformat may have occured
+		eval "$COMMIT_COMMAND"
 		pytest tests
 
 		# Exit code equals output of last command
