@@ -61,8 +61,9 @@ class Object():
         other_right = other.left + other.width
         other_bottom = other.top + other.height
 
-        return (right < other.left or self.left > other_right or
-                bottom < other.top or self.top > other_bottom)
+        ## Return True if there's no gap, else False
+        return not (right < other.left or self.left > other_right or
+                    bottom < other.top or self.top > other_bottom)
 
 class Person(Object):
     """Maintains properties for a person object."""
