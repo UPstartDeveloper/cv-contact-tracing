@@ -72,8 +72,8 @@ class Object():
 class Person(Object):
     """Maintains properties for a person object."""
 
-    def __init__(self, width, height, left, top):
-        super().__init__(width, height, left, top)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 class Place():
@@ -84,8 +84,8 @@ class Place():
 class Thing(Object):
     """Maintains properties for things that are objects."""
 
-    def __init__(self, width, height, left, top):
-        super().__init__(width, height, left, top)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
 
 class Scene():
