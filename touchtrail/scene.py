@@ -8,7 +8,7 @@ a place as well, which is managed by the Place class.
     scene = Scene()
     scene.describe()
 """
-__all__ = []
+__all__ = ('Person', 'Place', 'Thing', 'Scene')
 
 
 class Object():
@@ -16,13 +16,13 @@ class Object():
 
     Attributes:
         width (float):  Width of the bounding box as a ratio of the overall
-        image width.
+            image width.
         height (float): Height of the bounding box as a ratio of the overall
-        image height.
+            image height.
         top (float): Top coordinate of the bounding box as a ratio of overall
-        image height.
+            image height.
         left (float): Left coordinate of the bounding box as a ratio of overall
-        image width.
+            image width.
     """
 
     def __init__(self, width, height, left, top):
@@ -70,8 +70,8 @@ class Object():
 class Person(Object):
     """Maintains properties for a person object."""
 
-    def __init__(self, bounding_box):
-        super().__init__(bounding_box)
+    def __init__(self, width, height, left, top):
+        super().__init__(width, height, left, top)
 
 
 class Place():
@@ -81,7 +81,9 @@ class Place():
 
 class Thing(Object):
     """Maintains properties for things that are objects."""
-    pass
+
+    def __init__(self, width, height, left, top):
+        super().__init__(width, height, left, top)
 
 
 class Scene():
