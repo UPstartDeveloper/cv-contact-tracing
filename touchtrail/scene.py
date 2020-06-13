@@ -104,6 +104,9 @@ class Scene():
     def add(self, obj):
         """Add a new Object to the scene.
 
+        Args:
+            obj (Object): The Object to be added to this scene.
+
         Returns:
             The unique id for given object.
         """
@@ -118,3 +121,11 @@ class Scene():
                 obj_id = uuid4()
             obj.id = obj_id
         self.objects[obj.id] = obj
+
+    def step(self, new_positions):
+        """Update scene with all the new object positions and sizes.
+
+        Args:
+            new_positions (dict): A map of object ids to new objects.
+        """
+        pass
