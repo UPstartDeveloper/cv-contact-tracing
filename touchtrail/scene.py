@@ -102,7 +102,11 @@ class Scene():
         self.objects = {}
 
     def add(self, obj):
-        """Add a new Object to the scene."""
+        """Add a new Object to the scene.
+
+        Returns:
+            The unique id for given object.
+        """
 
         if obj.id is None:
             ## Object id isn't set
