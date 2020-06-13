@@ -8,6 +8,8 @@ a place as well, which is managed by the Place class.
     scene = Scene()
     scene.describe()
 """
+from uuid import uuid4
+
 __all__ = ('Person', 'Place', 'Thing', 'Scene')
 
 
@@ -90,5 +92,25 @@ class Thing(Object):
 
 class Scene():
     """Maintains a coherent scene narrative consisting of locations, paths,
-    collisions, and Person-Thing contacts."""
-    pass
+    collisions, and Person-Thing contacts.
+
+    Attributes:
+        objects (dict): Maps object id to object instance.
+    """
+
+    def __init__(self):
+        self.objects = {}
+
+    def add(self, obj):
+        """Add a new Object to the scene."""
+
+        if obj.id is None:
+            ## Object id isn't set
+            obj_id = uuid4()
+
+            while obj_id in self.objects:
+                ## Handle the very very rare case that the uuid library
+                ## generates a duplicate
+                obj_id = uuid4()
+            obj.id = obj_id
+        self.objects[obj.id] = obj
