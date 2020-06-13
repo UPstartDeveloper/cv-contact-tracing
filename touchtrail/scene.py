@@ -23,13 +23,15 @@ class Object():
             image height.
         left (float): Left coordinate of the bounding box as a ratio of overall
             image width.
+        id (string): Unique random UUID.
     """
 
-    def __init__(self, width, height, left, top):
+    def __init__(self, width, height, left, top, id=None):
         self.width = width
         self.height = height
         self.left = left
         self.top = top
+        self.id = id
 
     def is_touching(self, other):
         """Determines if two objects have come into contact by calculating
