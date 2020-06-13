@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# Reformat code and run tests.
+#
+NEWLINE=$'\n'
+MSG_DECOR="~~~~~~~"
+ERRMSG_PREFIX="${MSG_DECOR} Whoops! git commit failed :0 \
+${MSG_DECOR}${NEWLINE}"
+
+./beautify
+
+# Exit code equals output of last command
+REFORMAT_EXITCODE=$?
+
+if [ $REFORMAT_EXITCODE -eq 0 ]
+	# reformat succeeded
+	then
+		pytest tests
+
+		# Exit code equals output of last command
+		TEST_EXITCODE=$?
+
+		if [ $TEST_EXITCODE -eq 0 ]
+			# Tests succeeded
+			then
+				exit 0
+		fi
+		echo "${ERRMSG_PREFIX}Tests failed."
+    	exit 1
+fi
+
+echo "${ERRMSG_PREFIX}Reformat failed."
+exit 1

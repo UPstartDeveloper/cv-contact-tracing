@@ -3,7 +3,9 @@ import unittest
 
 from touchtrail.scene import Object
 
+
 class ObjectTestCase(unittest.TestCase):
+
     def test_init(self):
         obj = Object(0, 0, 0, 0)
         assert obj.left == 0
@@ -42,6 +44,12 @@ class ObjectTestCase(unittest.TestCase):
         G = Object(width=10, height=10, left=0, top=0)
         assert F.is_touching(G)
         assert G.is_touching(F)
+
+        ## Test top left corner overlap A – B
+        A = Object(width=10, height=10, left=0, top=0)
+        B = Object(width=10, height=10, left=9, top=8)
+        assert A.is_touching(B)
+        assert B.is_touching(A)
 
         ## Test top left corner overlap A – B
         A = Object(width=10, height=10, left=0, top=0)
