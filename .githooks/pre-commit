@@ -1,6 +1,7 @@
 #!/bin/sh
 #
-# Reformat code and run tests.
+# Reformats code for staged files, re-stages those files, and calls the
+# original commit message. If that succeeds, then tests are run.
 #
 NEWLINE=$'\n'
 MSG_DECOR="~~~~~~~"
@@ -16,9 +17,11 @@ REFORMAT_EXITCODE=$?
 if [ $REFORMAT_EXITCODE -eq 0 ]
 	# reformat succeeded
 	then
+		# String contains all the stages files separated by newline
 		# https://stackoverflow.com/questions/33610682/git-list-of-staged-files
 		FILES="$(git diff --name-only --cached)"
 
+		## Go through each file in FILES and re-stage it
 		# https://unix.stackexchange.com/questions/509714/iterate-through-multiline-string-line-by-line
 		IFS='
 		' # split on newline only
