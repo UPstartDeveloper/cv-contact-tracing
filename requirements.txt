@@ -27,3 +27,4 @@ rsa==3.4.2
 six @ file:///home/conda/feedstock_root/build_artifacts/six_1590081179328/work
 traitlets==4.3.3
 wcwidth @ file:///home/conda/feedstock_root/build_artifacts/wcwidth_1591117871324/work
+yapf==0.30.0
